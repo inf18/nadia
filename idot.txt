@@ -1,0 +1,29 @@
+public void idotomatis() {
+        try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = (Connection) DriverManager.getConnection("jdbc:mysql://192.168.0.100:3306/db_silvia","smk","bivos");
+        String sql = "SELECT * FROM customer ORDER BY Id_Customer DESC";
+        PreparedStatement st=(PreparedStatement) con.prepareStatement(sql);
+        ResultSet rs=st.executeQuery();   // import java.sql.ResultSet;
+            
+            if (rs.next()) {
+                id = rs.getString("Id_Customer").substring(1);
+                String AN = "" + (Integer.parseInt(id) + 1);
+                String Nol = "";
+
+                if(AN.length()==1)
+                {Nol = "00";}
+                else if(AN.length()==2)
+                {Nol = "0";}
+                else if(AN.length()==3)
+                {Nol = "";}
+                txtId.setText("C" + Nol + AN);//sesuaikan dengan variable namenya
+            } else {
+                txtId.setText("C001");//sesuaikan dengan variable namenya
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();//penanganan masalah
+        }
+  } 
+  

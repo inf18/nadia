@@ -1,0 +1,62 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package global;
+
+import db_.Parameter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+/**
+ *
+ * @author BeeBlack
+ */
+public class server {
+    static ServerSocket server;
+    static Socket client;
+    static boolean signal = false;
+
+    /**
+     * @param args the command line arguments
+     */
+    public server(){
+        try {
+            System.out.println("Loading....please wait");
+            server = new ServerSocket(new Parameter().PORT);
+            signal = true;
+        }catch(Exception ex){
+            signal = false;
+        }
+        if(signal = true){
+            new terimaKoneksi("RunServer");
+        }
+    }
+
+    public static class terimaKoneksi implements Runnable {
+
+        Thread t;
+
+        terimaKoneksi(String imeNiti){
+            t = new Thread(this, imeNiti);
+            t.start();
+        }
+
+        public void run() {
+            while(true){
+                try {
+                    try {
+                        client = server.accept();
+                        System.out.println("Akses Client.....");
+                    } catch (Exception e){
+                        break;
+                    }
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+    }
+}
