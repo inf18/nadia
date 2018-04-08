@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cetak" language="groovy" pageWidth="590" pageHeight="220" orientation="Landscape" columnWidth="550" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="135"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="no_tiket" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{no_tiket}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from transaksi where no_tiket = $P{no_tiket}]]>
+	</queryString>
+	<field name="no_tiket" class="java.lang.String"/>
+	<field name="kelas" class="java.lang.String"/>
+	<field name="jenis_tiket" class="java.lang.String"/>
+	<field name="harga" class="java.lang.Integer"/>
+	<background>
+		<band height="200" splitType="Stretch">
+			<image vAlign="Bottom">
+				<reportElement mode="Opaque" x="0" y="-20" width="85" height="133" backcolor="#000000"/>
+				<imageExpression class="java.lang.String"><![CDATA["silhouette2.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="-20" y="-20" width="20" height="133" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="100" width="105" height="100" backcolor="#666666"/>
+				<line>
+					<reportElement mode="Transparent" x="1" y="72" width="20" height="1" backcolor="#FFFFFF"/>
+				</line>
+				<textField>
+					<reportElement style="Detail" x="2" y="76" width="102" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="16"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{no_tiket}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement mode="Transparent" x="28" y="72" width="20" height="1" backcolor="#FFFFFF"/>
+				</line>
+				<line>
+					<reportElement mode="Transparent" x="84" y="72" width="20" height="1" backcolor="#FFFFFF"/>
+				</line>
+				<line>
+					<reportElement mode="Transparent" x="57" y="72" width="20" height="1" backcolor="#FFFFFF"/>
+				</line>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="105" height="73"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="30"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{no_tiket}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="86" y="0" width="475" height="67" backcolor="#993300"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Footlight MT Light" size="45" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Festival Musik SKMM 4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="86" y="56" width="475" height="37" backcolor="#993300"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe Script" size="20"/>
+				</textElement>
+				<text><![CDATA[Sumpah Kami Masih Muda]]></text>
+			</staticText>
+			<line>
+				<reportElement x="85" y="99" width="495" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="98" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="228" y="46" width="154" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{jenis_tiket}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="457" y="26" width="104" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{harga}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="107" y="46" width="92" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<text><![CDATA[Jenis Tiket]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="387" y="26" width="52" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="209" y="46" width="11" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="446" y="26" width="11" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="108" y="1" width="55" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<text><![CDATA[Kelas]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="228" y="1" width="121" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kelas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="209" y="1" width="11" height="45" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Javanese Text" size="16"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="361" y="80" width="161" height="18" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Imprint MT Shadow" size="12"/>
+				</textElement>
+				<text><![CDATA[#SumpahKamiMasihMuda4]]></text>
+			</staticText>
+			<line>
+				<reportElement x="83" y="72" width="495" height="1"/>
+			</line>
+			<image>
+				<reportElement x="524" y="73" width="46" height="25"/>
+				<imageExpression class="java.lang.String"><![CDATA["E:\\file nadia\\Sekolah\\SMK IB\\Pelajaran\\TA\\Presentasi\\XI\\tiketkonser\\src\\img\\logo-skmm-ya.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
